@@ -1,4 +1,4 @@
-import { StringUtils, getStringInfo, toUpperCase } from "../app/utils";
+import { StringUtils, getStringInfo, toUpperCase } from "../app/Utils";
 
 describe("Utils test suite", () => {
   describe("StringUtils tests", () => {
