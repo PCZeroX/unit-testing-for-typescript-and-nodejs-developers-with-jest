@@ -8,7 +8,9 @@
   },
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watchAll"
+    "test:watch": "jest --watchAll",
+    "start": "ts-node src/app/server_app/Launcher.ts",
+    "dev": "ts-node-dev --respawn src/app/server_app/Launcher.ts"
   },
   "keywords": [],
   "author": "",
