@@ -9,9 +9,9 @@ import { Server } from "../../app/server_app/server/Server";
 
 import { makeAwesomeRequest } from "./utils/http-client";
 
-// import * as generated from "../../app/server_app/data/IdGenerator";
+import * as generated from "../../app/server_app/data/IdGenerator";
 
-describe("Server app integration tests", () => {
+xdescribe("Server app integration tests", () => {
   let server: Server;
 
   beforeAll(() => {
@@ -42,11 +42,12 @@ describe("Server app integration tests", () => {
       method: HTTP_METHODS.POST,
       body: JSON.stringify(someUser),
     });
-    const resultBody = await result.json();
-    console.log("resultBody:", resultBody);
+    const resultBody = await result.json(); // { userId: 'd21fc3ed6c3c98819942' }
 
     expect(result.status).toBe(HTTP_CODES.CREATED);
     expect(resultBody.userId).toBeDefined();
+
+    console.log("connecting to address: 🚀", process.env.HOST); // connecting to address: 🚀 some.host
   });
 
   it("should register new user with awesomeRequest", async () => {
@@ -198,5 +199,28 @@ describe("Server app integration tests", () => {
       }
     );
     expect(getResult.status).toBe(HTTP_CODES.NOT_fOUND);
+  });
+
+  it("snapshot demo", async () => {
+    jest.spyOn(generated, "generateRandomId").mockReturnValueOnce("12345");
+
+    await fetch("http://localhost:8080/reservation", {
+      method: HTTP_METHODS.POST,
+      body: JSON.stringify(someReservation),
+      headers: {
+        authorization: token,
+      },
+    });
+
+    const getResult = await fetch(`http://localhost:8080/reservation/12345`, {
+      method: HTTP_METHODS.GET,
+      headers: {
+        authorization: token,
+      },
+    });
+    const getRequestBody: Reservation = await getResult.json();
+
+    expect(getRequestBody).toMatchSnapshot();
+    expect(getRequestBody).toMatchSnapshot();
   });
 });

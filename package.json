@@ -9,8 +9,10 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
+    "itest": "jest --config itest.config.ts",
     "start": "ts-node src/app/server_app/Launcher.ts",
-    "dev": "ts-node-dev --respawn src/app/server_app/Launcher.ts"
+    "dev": "ts-node-dev --respawn src/app/server_app/Launcher.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

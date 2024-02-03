@@ -24,13 +24,7 @@ export class Server {
     this.server = createServer((req, res) => {
       console.log(`Got request from ${req.headers["user-agent"]}`);
       console.log(`Got request for ${req.url}`);
-      this.handleRequest(req, res)
-        .then(() => res.end())
-        .catch((error) => {
-          console.error("Error handling request:", error);
-          res.statusCode = 500;
-          res.end();
-        });
+      this.handleRequest(req, res).then(() => res.end());
     });
     this.server.listen(8080);
     console.log("server started");
