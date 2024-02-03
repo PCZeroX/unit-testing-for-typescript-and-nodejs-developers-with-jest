@@ -1,7 +1,8 @@
 import type { Config } from "@jest/types";
 
 const baseDir = "<rootDir>/src/app/server_app";
-const baseTestDir = "<rootDir>/src/test/server_app";
+// const baseTestDir = "<rootDir>/src/test/";
+const baseTestDir = "<rootDir>/src/test/server_app2";
 
 const config: Config.InitialOptions = {
   preset: "ts-jest",
@@ -12,7 +13,7 @@ const config: Config.InitialOptions = {
   // collectCoverageFrom: ["<rootDir>/src/app/**/*.ts"],
   // testMatch: ["**/test/**/*.ts", "**/?(*.)+(spec|test).ts"],
   collectCoverageFrom: [`${baseDir}/**/*.ts`],
-  testMatch: [`${baseTestDir}/**/*.ts`],
+  testMatch: [`${baseTestDir}/**/*test.ts`],
 };
 
 export default config;
